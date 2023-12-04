@@ -13,7 +13,9 @@ dependencies:
   flutter:
     sdk: flutter
 
-  swifty_chat_data: ^0.1.1
+  swifty_chat_data:
+    git:
+      url: https://github.com/Tevfikbs/swifty_chat_data.git
 
 dev_dependencies:
   flutter_test:

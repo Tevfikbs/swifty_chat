@@ -33,15 +33,39 @@ final class ImageMessageWidget extends StatelessWidget
 
   Widget imageContainer(BuildContext context) {
     final theme = context.theme;
+    final String type = message.messageKind.file!.type;
 
     return ClipRRect(
       borderRadius: theme.imageBorderRadius,
       child: Stack(
         children: [
-          Image(
-            width: _imageWidth(context),
-            image: message.messageKind.imageProvider!,
-          ),
+          type == "Image"
+              ? Image(
+                  width: _imageWidth(context),
+                  image: NetworkImage(
+                    message.messageKind.file!.url,
+                  ),
+                )
+              : type == "Video"
+                  ? Image(
+                      width: _imageWidth(context),
+                      image: NetworkImage(
+                        message.messageKind.file!.url,
+                      ),
+                    )
+                  : type == "Audio"
+                      ? Image(
+                          width: _imageWidth(context),
+                          image: NetworkImage(
+                            message.messageKind.file!.url,
+                          ),
+                        )
+                      : Image(
+                          width: _imageWidth(context),
+                          image: NetworkImage(
+                            message.messageKind.file!.url,
+                          ),
+                        ),
           Positioned(
             right: 12,
             bottom: 6,

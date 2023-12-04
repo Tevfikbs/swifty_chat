@@ -3,12 +3,14 @@ description: >-
   A Flutter package to quickly get started building Chat UIs
   with different type of message kinds.
 version: 1.6.1
+publish_to: none
 homepage: https://github.com/EnesKaraosman/swifty_chat
 repository: https://github.com/EnesKaraosman/swifty_chat
 
 environment:
   sdk: ">=3.0.1 <4.0.0"
   flutter: ">=3.10.0"
+  
 
 dependencies:
   # https://pub.dev/packages/carousel_slider
@@ -27,7 +29,12 @@ dependencies:
   styled_widget: ^0.4.1
 
   # https://pub.dev/packages/swifty_chat_data
-  swifty_chat_data: ^0.1.1
+  swifty_chat_data:
+    git:
+      url: https://github.com/Tevfikbs/swifty_chat_data.git
+
+    
+  media_kit: ^1.1.10+1
 
   # https://pub.dev/packages/url_launcher
   url_launcher: ^6.1.11

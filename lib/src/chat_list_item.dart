@@ -25,7 +25,7 @@ final class ChatListItem extends StatelessWidget {
   Widget _messageWidget(BuildContext context) {
     if (chatMessage.messageKind.text != null) {
       return TextMessageWidget(chatMessage);
-    } else if (chatMessage.messageKind.imageProvider != null) {
+    } else if (chatMessage.messageKind.file != null) {
       return ImageMessageWidget(chatMessage);
     } else if (chatMessage.messageKind.quickReplies.isNotEmpty) {
       return QuickReplyWidget(chatMessage);

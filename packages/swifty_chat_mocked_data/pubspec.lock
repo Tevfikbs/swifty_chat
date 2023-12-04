@@ -155,10 +155,11 @@ packages:
   swifty_chat_data:
     dependency: "direct main"
     description:
-      name: swifty_chat_data
-      sha256: "3dfc93fcaab366b28342c0e547a7175a0b186be1959ed0f464566356569de39a"
-      url: "https://pub.dev"
-    source: hosted
+      path: "."
+      ref: HEAD
+      resolved-ref: "777019fe7dbde38a3d10782bd2853018c56a0402"
+      url: "https://github.com/Tevfikbs/swifty_chat_data.git"
+    source: git
     version: "0.1.1"
   term_glyph:
     dependency: transitive

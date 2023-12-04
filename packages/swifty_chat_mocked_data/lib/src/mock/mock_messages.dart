@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:faker/faker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:swifty_chat_data/swifty_chat_data.dart';
+import 'package:swifty_chat_mocked_data/src/mock/models/mock_file.dart';
 
 import './mock_message_kind.dart';
 import './models/mock_carousel_item.dart';
@@ -64,9 +65,12 @@ MockMessage generateRandomMessage(
         user: user,
         id: DateTime.now().toString(),
         isMe: isMe,
-        messageKind: MessageKind.imageProvider(
-          NetworkImage(
-            'https://picsum.photos/id/$mockId/300',
+        messageKind: MessageKind.file(
+          MockFileData(
+            url: 'https://picsum.photos/id/$mockId/300',
+            mime: "image/jpeg",
+            type: "Image",
+            subText: "Resim dosyası",
           ),
         ),
       );
