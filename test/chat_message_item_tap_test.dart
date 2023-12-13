@@ -42,7 +42,7 @@ void main() {
               chatMessageInputField: _messageInputField((_) {}),
             ).setOnMessagePressed(
               (message) => expect(
-                message.messageKind.imageProvider == null,
+                message.messageKind.file?.url == null,
                 false,
                 reason: 'Could not tap image message widget',
               ),
