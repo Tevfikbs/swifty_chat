@@ -42,7 +42,7 @@ dependencies:
       url: https://github.com/Tevfikbs/swifty_chat_data.git
 
   # https://pub.dev/packages/url_launcher
-  url_launcher: ^6.1.11
+  url_launcher: ^6.2.3
 
   flutter_hooks: ^0.20.3
 
