@@ -157,7 +157,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "86a3ef954086fbaeb827950568e4be72690bfe9c"
+      resolved-ref: "5a1f87b92c2f270e003e39c49cec16c6b2a3f1ae"
       url: "https://github.com/Tevfikbs/swifty_chat_data.git"
     source: git
     version: "0.1.1"
