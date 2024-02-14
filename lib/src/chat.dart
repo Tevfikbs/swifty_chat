@@ -39,7 +39,7 @@ final class ChatStateContainer extends InheritedWidget {
 
 final class Chat extends StatefulWidget {
   Chat({
-    this.chatMessageInputField = const SizedBox(),
+    required this.chatMessageInputField,
     this.messages = const [],
     this.customMessageWidget,
     this.messageCellSizeConfigurator,
@@ -113,7 +113,7 @@ final class ChatState extends State<Chat> {
                 messages: widget.messages,
                 onMessagePressed: widget._onMessagePressed,
               ),
-              widget.chatMessageInputField!,
+              widget.chatMessageInputField,
             ],
           ).gestures(
             onTap: () => FocusScope.of(context).unfocus(),
