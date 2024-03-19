@@ -55,15 +55,21 @@ final class _CarouselItem extends StatelessWidget {
                 image: item.imageProvider!,
               ),
             ),
-          Text(
-            item.title,
-            style: context.theme.carouselTitleTextStyle,
-          ).padding(all: context.theme.textMessagePadding),
-          Text(
-            item.subtitle,
-            style: context.theme.carouselSubtitleTextStyle,
-            textAlign: TextAlign.center,
-          ).padding(all: context.theme.textMessagePadding),
+          if (item.title == "")
+            const SizedBox()
+          else
+            Text(
+              item.title,
+              style: context.theme.carouselTitleTextStyle,
+            ).padding(all: context.theme.textMessagePadding),
+          if (item.subtitle == "")
+            const SizedBox()
+          else
+            Text(
+              item.subtitle,
+              style: context.theme.carouselSubtitleTextStyle,
+              textAlign: TextAlign.center,
+            ).padding(all: context.theme.textMessagePadding),
           Wrap(
             children: item.buttons
                 .map(
