@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:styled_widget/styled_widget.dart';
-import 'package:swifty_chat/src/chat-message-list-items/image_viewer.dart';
+import 'package:swifty_chat/src/utils/image_viewer.dart';
 import 'package:swifty_chat/src/chat.dart';
 import 'package:swifty_chat/src/extensions/theme_context.dart';
 import 'package:swifty_chat/src/protocols/has_avatar.dart';
