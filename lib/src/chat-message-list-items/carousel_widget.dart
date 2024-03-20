@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:styled_widget/styled_widget.dart';
+import 'package:swifty_chat/src/chat-message-list-items/image_viewer.dart';
 import 'package:swifty_chat/src/chat.dart';
 import 'package:swifty_chat/src/extensions/theme_context.dart';
 import 'package:swifty_chat/src/protocols/has_avatar.dart';
@@ -51,18 +52,34 @@ final class _CarouselItem extends StatelessWidget {
         children: [
           if (item.imageProvider != null)
             Flexible(
-              child: Image(
-                image: item.imageProvider!,
+              child: InkWell(
+                onTap: item.imageProvider == null || item.imageProvider == ""
+                    ? () {}
+                    : () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (_) => ImageViewer(
+                              imageProvider: item.imageProvider!,
+                              closeAction: () {
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                          ),
+                        );
+                      },
+                child: Image(
+                  image: item.imageProvider!,
+                ),
               ),
             ),
-          if (item.title == "")
+          if (item.title == "" || item.title == null)
             const SizedBox()
           else
             Text(
               item.title,
               style: context.theme.carouselTitleTextStyle,
             ).padding(all: context.theme.textMessagePadding),
-          if (item.subtitle == "")
+          if (item.subtitle == "" || item.title == null)
             const SizedBox()
           else
             Text(
