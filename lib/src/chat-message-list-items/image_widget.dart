@@ -114,7 +114,7 @@ final class ImageMessageWidget extends HookWidget
         Text(
           message.messageKind.file!.subText,
           style: TextStyle(
-            color: theme.secondaryColor,
+            color: theme.htmlTextColor,
           ),
         ),
         ElevatedButton(
