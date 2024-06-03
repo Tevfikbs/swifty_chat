@@ -55,10 +55,10 @@ final class HTMLWidget extends StatelessWidget with HasAvatar {
               ),
               child: Html(
                 data: chatMessage.messageKind.htmlData,
-                onImageTap: onImageTap,
+                onAnchorTap: onImageTap,
                 style: htmlStyle,
                 onLinkTap: onLinkTap ??
-                    (link, _, __, ___) async {
+                    (link, _, __) async {
                       if (await canLaunchUrl(Uri.parse(link!))) {
                         await launchUrl(
                           Uri.parse(link),

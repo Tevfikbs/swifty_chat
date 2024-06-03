@@ -78,9 +78,9 @@ class _AdvancedChat extends State<AdvancedChat> {
       )
           .setOnHTMLWidgetPressed(
             () => {
-              "onLinkTap": (url, _, __, ___) =>
+              "onLinkTap": (url, _, __) =>
                   debugPrint("onLinkTapped: $url"),
-              "onImageTap": (src, _, __, ___) =>
+              "onImageTap": (src, _, __) =>
                   debugPrint("onImageTapped: $src")
             },
           )

@@ -65,14 +65,19 @@ MockMessage generateRandomMessage(
         user: user,
         id: DateTime.now().toString(),
         isMe: isMe,
-        messageKind: MessageKind.file(
-          MockFileData(
-            url: 'https://picsum.photos/id/$mockId/300',
-            mime: "image/jpeg",
-            type: "Image",
-            subText: "Resim dosyası",
-          ),
-        ),
+        messageKind: MessageKind.text(""),
+        //  MessageKind.file(
+        //   MockFileData(
+        //     imageUrl: const AssetImage(
+        //       "assets/images/mock_image_1.jpg",
+        //       package: 'swifty_chat_mocked_data',
+        //     ),
+        //     url: 'https://picsum.photos/id/$mockId/300',
+        //     mime: "image/jpeg",
+        //     type: "Image",
+        //     subText: "Resim dosyası",
+        //   ),
+        // ),
       );
     case MockMessageKind.quickReply:
       return MockMessage(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_html/html_parser.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:styled_widget/styled_widget.dart';
 import 'package:swifty_chat/src/chat_list_item.dart';
 import 'package:swifty_chat/src/extensions/keys.dart';
