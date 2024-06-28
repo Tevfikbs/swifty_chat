@@ -1,8 +1,11 @@
 import 'dart:io';
+import 'package:chewie/chewie.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:swifty_chat/src/chat-message-list-items/audio_widget.dart';
 import 'package:swifty_chat/src/chat.dart';
 import 'package:swifty_chat/src/extensions/date_extensions.dart';
 import 'package:swifty_chat/src/extensions/theme_context.dart';
@@ -10,6 +13,7 @@ import 'package:swifty_chat/src/protocols/has_avatar.dart';
 import 'package:swifty_chat/src/protocols/incoming_outgoing_message_widgets.dart';
 import 'package:swifty_chat_data/swifty_chat_data.dart';
 import 'package:uuid/uuid.dart';
+import 'package:video_player/video_player.dart';
 
 final class ImageMessageWidget extends HookWidget
     with HasAvatar, IncomingOutgoingMessageWidgets {
@@ -40,6 +44,35 @@ final class ImageMessageWidget extends HookWidget
     final theme = context.theme;
     final String type = message.messageKind.file!.type;
     final status = useState<String?>('');
+    final videoPlayerController = useState<VideoPlayerController?>(null);
+    final chewieController = useState<ChewieController?>(null);
+
+    useEffect(() {
+      if (type == "Video") {
+        videoPlayerController.value = VideoPlayerController.networkUrl(
+          Uri.parse(
+            message.messageKind.file!.url,
+          ),
+        );
+        videoPlayerController.value!.initialize().then((_) {
+          chewieController.value = ChewieController(
+            videoPlayerController: videoPlayerController.value!,
+            aspectRatio: videoPlayerController.value!.value.aspectRatio,
+            deviceOrientationsOnEnterFullScreen: [
+              DeviceOrientation.portraitUp,
+            ],
+            deviceOrientationsAfterFullScreen: [
+              DeviceOrientation.portraitUp,
+            ],
+          );
+        });
+      }
+      return () {
+        videoPlayerController.value?.dispose();
+        chewieController.value?.dispose();
+      };
+    }, [message.messageKind.file!.url]);
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -55,27 +88,36 @@ final class ImageMessageWidget extends HookWidget
                   ),
                 ),
               ] else if (type == "Video") ...[
-                Container(
-                  height: 150,
-                  width: _imageWidth(context),
-                  color: theme.secondaryColor,
-                  child: const Center(
-                    child: Icon(
-                      Icons.play_circle_fill,
-                      size: 50,
+                if (chewieController.value != null)
+                  Container(
+                    height: 150,
+                    width: _imageWidth(context),
+                    color: Colors.black,
+                    child: Chewie(
+                      controller: chewieController.value!,
+                    ),
+                  )
+                else
+                  Container(
+                    height: 150,
+                    width: _imageWidth(context),
+                    color: Colors.black,
+                    child: const Center(
+                      child: CircularProgressIndicator(),
                     ),
                   ),
-                ),
               ] else if (type == "Audio") ...[
                 Container(
-                  height: 50,
-                  width: _imageWidth(context),
-                  color: theme.secondaryColor,
-                  child: const Center(
-                    child: Icon(
-                      Icons.play_circle_fill,
-                      size: 20,
+                  decoration: BoxDecoration(
+                    color: theme.secondaryColor,
+                    borderRadius: BorderRadius.circular(
+                      20,
                     ),
+                  ),
+                  height: 60,
+                  width: _imageWidth(context),
+                  child: AudioPlayerWidget(
+                    audioUrl: message.messageKind.file!.url,
                   ),
                 ),
               ] else ...[
@@ -135,12 +177,16 @@ final class ImageMessageWidget extends HookWidget
                               ? const CircularProgressIndicator()
                               : status.value == "error"
                                   ? const Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: [
                                         Text("Error"),
                                         Icon(Icons.error),
                                       ],
                                     )
                                   : const Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: [
                                         Text("Download Complete"),
                                         Icon(Icons.done),
@@ -154,11 +200,12 @@ final class ImageMessageWidget extends HookWidget
               },
             );
 
-            downloadFileDeneme(
+            await downloadFileDeneme(
               message.messageKind.file!.url,
               message.messageKind.file!.mime,
               status,
-            ).then((value) => Navigator.of(context).pop());
+            );
+            Navigator.of(context).pop();
           },
           child: const Icon(
             Icons.download,
