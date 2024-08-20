@@ -122,21 +122,32 @@ final class ImageMessageWidget extends HookWidget
                 ),
               ] else ...[
                 Container(
-                  height: 50,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: theme.textMessagePadding,
+                  ),
+                  decoration: BoxDecoration(
+                    color: theme.secondaryColor,
+                    borderRadius: BorderRadius.circular(
+                      theme.messageBorderRadius,
+                    ),
+                  ),
+                  height: 60,
                   width: _imageWidth(context),
-                  color: theme.secondaryColor,
                   child: Row(
                     children: [
-                      const Icon(
-                        Icons.file_open,
-                        size: 50,
-                        color: Colors.white,
+                      SizedBox(
+                        height: 40,
+                        width: 40,
+                        child: Image.network(
+                          "https://cdn-icons-png.flaticon.com/512/337/337946.png",
+                        ),
                       ),
                       const SizedBox(
-                        width: 30,
+                        width: 20,
                       ),
                       Text(
                         message.messageKind.file!.subText,
+                        style: theme.incomingMessageBodyTextStyle,
                       ),
                     ],
                   ),
@@ -153,13 +164,13 @@ final class ImageMessageWidget extends HookWidget
             ],
           ),
         ),
-        Text(
-          message.messageKind.file!.subText,
-          style: TextStyle(
-            color: theme.htmlTextColor,
-          ),
-        ),
-        ElevatedButton(
+        // Text(
+        //   message.messageKind.file!.subText,
+        //   style: TextStyle(
+        //     color: theme.htmlTextColor,
+        //   ),
+        // ),
+        OutlinedButton(
           style: theme.quickReplyButtonStyle,
           onPressed: () async {
             showDialog(
@@ -207,9 +218,9 @@ final class ImageMessageWidget extends HookWidget
             );
             Navigator.of(context).pop();
           },
-          child: const Icon(
+          child: Icon(
             Icons.download,
-            color: Colors.white,
+            color: theme.secondaryColor,
           ),
         ),
       ],

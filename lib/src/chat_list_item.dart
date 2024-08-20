@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:styled_widget/styled_widget.dart';
 import 'package:swifty_chat/src/chat-message-list-items/carousel_widget.dart';
 import 'package:swifty_chat/src/chat-message-list-items/html_widget.dart';
-import 'package:swifty_chat/src/chat-message-list-items/image_widget.dart';
+import 'package:swifty_chat/src/chat-message-list-items/file_widget.dart';
 import 'package:swifty_chat/src/chat-message-list-items/quick_reply_widget.dart';
 import 'package:swifty_chat/src/chat-message-list-items/text_widget.dart';
 import 'package:swifty_chat/src/chat.dart';
