@@ -5,6 +5,7 @@ import 'package:swifty_chat/src/chat-message-list-items/html_widget.dart';
 import 'package:swifty_chat/src/chat-message-list-items/file_widget.dart';
 import 'package:swifty_chat/src/chat-message-list-items/quick_reply_widget.dart';
 import 'package:swifty_chat/src/chat-message-list-items/text_widget.dart';
+import 'package:swifty_chat/src/chat-message-list-items/typing_widget.dart';
 import 'package:swifty_chat/src/chat.dart';
 import 'package:swifty_chat/src/extensions/theme_context.dart';
 import 'package:swifty_chat_data/swifty_chat_data.dart';
@@ -25,6 +26,8 @@ final class ChatListItem extends StatelessWidget {
   Widget _messageWidget(BuildContext context) {
     if (chatMessage.messageKind.text != null) {
       return TextMessageWidget(chatMessage);
+    } else if (chatMessage.messageKind.typing != null) {
+      return TypingWidget(chatMessage);
     } else if (chatMessage.messageKind.file != null) {
       return ImageMessageWidget(chatMessage);
     } else if (chatMessage.messageKind.quickReplies.isNotEmpty) {
