@@ -1,10 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/material.dart';
+// Places where you have syntax error then just do this
+import 'package:flutter/material.dart' hide CarouselController;
 import 'package:styled_widget/styled_widget.dart';
-import 'package:swifty_chat/src/utils/image_viewer.dart';
 import 'package:swifty_chat/src/chat.dart';
 import 'package:swifty_chat/src/extensions/theme_context.dart';
 import 'package:swifty_chat/src/protocols/has_avatar.dart';
+import 'package:swifty_chat/src/utils/image_viewer.dart';
 import 'package:swifty_chat_data/swifty_chat_data.dart';
 
 final class CarouselWidget extends StatelessWidget with HasAvatar {
